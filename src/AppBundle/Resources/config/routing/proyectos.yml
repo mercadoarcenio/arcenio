@@ -1,0 +1,4 @@
+pro_proyec:
+    path: /proyectos
+    defaults: { _controller: "AppBundle:Proyectos:proyectos" }
+    methods: GET

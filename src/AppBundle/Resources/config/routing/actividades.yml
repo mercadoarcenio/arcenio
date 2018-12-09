@@ -1,0 +1,4 @@
+acti_actividades:
+    path: /actividades
+    defaults: { _controller: "AppBundle:Actividades:actividades" }
+    methods: GET

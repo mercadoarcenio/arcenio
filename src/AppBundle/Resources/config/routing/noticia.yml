@@ -1,0 +1,4 @@
+noti_noticia:
+    path: /noticia
+    defaults: { _controller: "AppBundle:Noticia:noticia" }
+    methods: GET

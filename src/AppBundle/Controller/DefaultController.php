@@ -9,16 +9,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Services\Helpers;
 use AppBundle\Services\JwtAuth;
+use AppBundle\Entity\Noticia;
 
 class DefaultController extends Controller
 {
 
-    public function indexAction(Request $request)
+   public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $noticiaRepository = $this->getDoctrine()->getRepository(Noticia::class);
+        $noticia = $noticiaRepository->findAll();
+
+        return $this->render('default/index.html.twig',array('noticia'=>$noticia));
     }
 
    public function loginAction(Request $request){

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Noticia
+ * Actividades
  *
- * @ORM\Table(name="noticia")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\NoticiaRepository")
+ * @ORM\Table(name="actividades")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActividadesRepository")
  */
-class Noticia
+class Actividades
 {
     /**
      * @var int
@@ -31,23 +31,16 @@ class Noticia
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="text")
+     * @ORM\Column(name="descripcion", type="string", length=255)
      */
     private $descripcion;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha", type="datetime")
-     */
-    private $fecha;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="foto", type="string", length=255)
+     * @ORM\Column(name="imagen", type="string", length=255)
      */
-    private $foto;
+    private $imagen;
 
     /**
      * @var bool
@@ -72,7 +65,7 @@ class Noticia
      *
      * @param string $nombre
      *
-     * @return Noticia
+     * @return Actividades
      */
     public function setNombre($nombre)
     {
@@ -96,7 +89,7 @@ class Noticia
      *
      * @param string $descripcion
      *
-     * @return Noticia
+     * @return Actividades
      */
     public function setDescripcion($descripcion)
     {
@@ -116,51 +109,27 @@ class Noticia
     }
 
     /**
-     * Set fecha
+     * Set imagen
      *
-     * @param \DateTime $fecha
+     * @param string $imagen
      *
-     * @return Noticia
+     * @return Actividades
      */
-    public function setFecha($fecha)
+    public function setImagen($imagen)
     {
-        $this->fecha = $fecha;
+        $this->imagen = $imagen;
 
         return $this;
     }
 
     /**
-     * Get fecha
-     *
-     * @return \DateTime
-     */
-    public function getFecha()
-    {
-        return $this->fecha;
-    }
-
-    /**
-     * Set foto
-     *
-     * @param string $foto
-     *
-     * @return Noticia
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-
-        return $this;
-    }
-
-    /**
-     * Get foto
+     * Get imagen
      *
      * @return string
      */
-    public function getFoto()
+    public function getImagen()
     {
-        return $this->foto;
+        return $this->imagen;
     }
 
     /**
@@ -168,7 +137,7 @@ class Noticia
      *
      * @param boolean $top
      *
-     * @return Noticia
+     * @return Actividades
      */
     public function setTop($top)
     {
@@ -187,6 +156,4 @@ class Noticia
         return $this->top;
     }
 }
-
-
 

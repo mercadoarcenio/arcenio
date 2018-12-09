@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+  {% for actividades in actividades %}
+
+  <h1>{{actividades.nombre}}</h1>
+
+  <p>{{actividades.descripcion}}</p>
+
+
+{% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
