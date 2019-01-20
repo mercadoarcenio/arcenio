@@ -8,15 +8,8 @@ app_user:
 
 app_noticia:
     resource: "@AppBundle/Resources/config/routing/noticia.yml"
-    prefix: /
+    prefix: /noticia
 
-app_actividades:
-    resource: "@AppBundle/Resources/config/routing/actividades.yml"
-    prefix: /
-    
-app_proyectos:
-    resource: "@AppBundle/Resources/config/routing/proyectos.yml"
-    prefix: /
     
 
 

@@ -129,17 +129,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_default_pruebas:
 
-        // pro_proyec
-        if ('/proyectos' === $pathinfo) {
-            if ('GET' !== $canonicalMethod) {
-                $allow[] = 'GET';
-                goto not_pro_proyec;
-            }
-
-            return array (  '_controller' => 'AppBundle\\Controller\\ProyectosController::proyectosAction',  '_route' => 'pro_proyec',);
-        }
-        not_pro_proyec:
-
         // default_login
         if ('/login' === $pathinfo) {
             if ('POST' !== $canonicalMethod) {
@@ -173,27 +162,74 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_user_edit:
 
-        // noti_noticia
-        if ('/noticia' === $pathinfo) {
-            if ('GET' !== $canonicalMethod) {
-                $allow[] = 'GET';
-                goto not_noti_noticia;
+        if (0 === strpos($pathinfo, '/noticia')) {
+            // noticia_new
+            if ('/noticia/new' === $pathinfo) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_new;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::newAction',  '_route' => 'noticia_new',);
             }
+            not_noticia_new:
 
-            return array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::noticiaAction',  '_route' => 'noti_noticia',);
-        }
-        not_noti_noticia:
+            // noticia_edit
+            if (0 === strpos($pathinfo, '/noticia/edit') && preg_match('#^/noticia/edit(?:/(?P<id>[^/]++))?$#s', $pathinfo, $matches)) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_edit;
+                }
 
-        // acti_actividades
-        if ('/actividades' === $pathinfo) {
-            if ('GET' !== $canonicalMethod) {
-                $allow[] = 'GET';
-                goto not_acti_actividades;
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'noticia_edit')), array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::newAction',  'id' => NULL,));
             }
+            not_noticia_edit:
 
-            return array (  '_controller' => 'AppBundle\\Controller\\ActividadesController::actividadesAction',  '_route' => 'acti_actividades',);
+            // noticia_list
+            if ('/noticia/list' === $pathinfo) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_list;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::noticiasAction',  '_route' => 'noticia_list',);
+            }
+            not_noticia_list:
+
+            // noticia_detail
+            if (0 === strpos($pathinfo, '/noticia/detail') && preg_match('#^/noticia/detail(?:/(?P<id>[^/]++))?$#s', $pathinfo, $matches)) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_detail;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'noticia_detail')), array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::noticiasAction',  'id' => NULL,));
+            }
+            not_noticia_detail:
+
+            // noticia_search
+            if (0 === strpos($pathinfo, '/noticia/search') && preg_match('#^/noticia/search(?:/(?P<search>[^/]++))?$#s', $pathinfo, $matches)) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_search;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'noticia_search')), array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::searchAction',  'search' => NULL,));
+            }
+            not_noticia_search:
+
+            // noticia_remove
+            if (0 === strpos($pathinfo, '/noticia/remove') && preg_match('#^/noticia/remove(?:/(?P<id>[^/]++))?$#s', $pathinfo, $matches)) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_noticia_remove;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'noticia_remove')), array (  '_controller' => 'AppBundle\\Controller\\NoticiaController::removeAction',  'id' => NULL,));
+            }
+            not_noticia_remove:
+
         }
-        not_acti_actividades:
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

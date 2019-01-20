@@ -1,4 +1,29 @@
-noti_noticia:
-    path: /noticia
-    defaults: { _controller: "AppBundle:Noticia:noticia" }
-    methods: GET
+noticia_new:
+    path: /new
+    defaults: { _controller: "AppBundle:Noticia:new" }
+    methods: POST
+
+noticia_edit:
+    path: /edit/{id}
+    defaults: { _controller: "AppBundle:Noticia:new" ,id:null}
+    methods: POST
+
+noticia_list:
+    path: /list
+    defaults: { _controller: "AppBundle:Noticia:noticias"}
+    methods: POST  
+
+noticia_detail:
+    path: /detail/{id}
+    defaults: { _controller: "AppBundle:Noticia:noticias" ,id:null}
+    methods: POST   
+
+noticia_search:
+    path: /search/{search}
+    defaults: { _controller: "AppBundle:Noticia:search" ,search:null}
+    methods: POST               
+
+noticia_remove:
+    path: /remove/{id}
+    defaults: { _controller: "AppBundle:Noticia:remove" ,id:null}
+    methods: POST

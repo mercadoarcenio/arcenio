@@ -35,7 +35,7 @@ class UserController extends Controller {
       $emailConstraint->message = "This is not valid !!";
       $validate_email = $this->get("validator")->validate($email, $emailConstraint);
 
-      if ($email != null &&count($validate_email) == 0 && $password != null && $name != null && $surname != null) {
+      if ($email != null && count($validate_email) == 0 && $password != null && $name != null && $surname != null) {
           $user = new User();
           $user->setCreatedAt($createdAt);
           $user->setRole($role);
